@@ -38,6 +38,12 @@ return require('packer').startup(function()
     use("rafamadriz/friendly-snippets")
     use("glepnir/lspsaga.nvim")
 
+    -- Autopair
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
+
     -- Treesitter
     use("nvim-treesitter/nvim-treesitter", {
         run = ":TSUpdate"

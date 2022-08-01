@@ -130,12 +130,26 @@ require'lspconfig'.sumneko_lua.setup {
     },
 }
 
+-- ASM
+require("lspconfig").asm_lsp.setup(config())
+
 -- Fluter
 require("flutter-tools").setup{
     widget_guides = {
         enabled = true,
     },
 }
+
+-- Rust
+require("lspconfig").rust_analyzer.setup(config({
+
+}))
+
+-- Formatter
+require("code_lldb").setup()
+
+
+
 -- Symbol outline
 local opts = {
 	-- whether to highlight the currently hovered symbol
