@@ -6,3 +6,8 @@ local xnoremap = Remap.xnoremap
 local nmap = Remap.nmap
 
 nnoremap("<leader>pv", "<cmd>Ex<CR>")
+nnoremap("<leader>h", "<C-W><C-h>")
+nnoremap("<leader>j", "<C-W><C-j>")
+nnoremap("<leader>k", "<C-W><C-k>")
+nnoremap("<leader>l", "<C-W><C-l>")
+

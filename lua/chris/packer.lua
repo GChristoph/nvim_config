@@ -6,7 +6,10 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
+
+    -- Color schemes
     use 'morhetz/gruvbox'
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     -- Mason (Manages External editor tooling
     use {
@@ -38,11 +41,15 @@ return require('packer').startup(function()
     use("rafamadriz/friendly-snippets")
     use("glepnir/lspsaga.nvim")
 
-    -- Autopair
-    use {
-        "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
-    }
+    -- Nvim Surround
+    use({
+        "kylechui/nvim-surround",
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    })
 
     -- Treesitter
     use("nvim-treesitter/nvim-treesitter", {

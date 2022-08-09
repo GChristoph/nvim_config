@@ -145,10 +145,6 @@ require("lspconfig").rust_analyzer.setup(config({
 
 }))
 
--- Formatter
-require("code_lldb").setup()
-
-
 
 -- Symbol outline
 local opts = {
