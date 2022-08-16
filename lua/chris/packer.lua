@@ -13,21 +13,21 @@ return require('packer').startup(function()
 
     -- Mason (Manages External editor tooling
     use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
     }
 
     -- Java
-    use ('mfussenegger/nvim-jdtls')
+    use('mfussenegger/nvim-jdtls')
 
     -- Telescope (Fuyyz Finder)
     use("nvim-telescope/telescope.nvim")
     -- Native fuzzy finding plugin for telescope
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     -- Setup for Flutter
-    use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
+    use { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     -- CMP
     use("hrsh7th/cmp-nvim-lsp")
@@ -51,6 +51,21 @@ return require('packer').startup(function()
         end
     })
 
+    -- Nvim autopairs
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
+
+    -- File explorer
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons', -- optional, for file icons
+        },
+        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    }
+
     -- Treesitter
     use("nvim-treesitter/nvim-treesitter", {
         run = ":TSUpdate"
@@ -63,9 +78,9 @@ return require('packer').startup(function()
 
     -- LSP Lines
     use({
-      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-      config = function()
-        require("lsp_lines").setup()
-      end,
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+            require("lsp_lines").setup()
+        end,
     })
 end)
