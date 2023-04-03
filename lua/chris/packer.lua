@@ -1,86 +1,68 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+vim.cmd.packadd('packer.nvim')
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    -- Color schemes
-    use 'morhetz/gruvbox'
-    use { "catppuccin/nvim", as = "catppuccin" }
-
-    -- Mason (Manages External editor tooling
     use {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig",
+        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        -- or                            , branch = '0.1.x',
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    -- Java
-    use('mfussenegger/nvim-jdtls')
-
-    -- Telescope (Fuyyz Finder)
-    use("nvim-telescope/telescope.nvim")
-    -- Native fuzzy finding plugin for telescope
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-
-    -- Setup for Flutter
-    use { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' }
-
-    -- CMP
-    use("hrsh7th/cmp-nvim-lsp")
-    use("hrsh7th/cmp-buffer")
-    use("hrsh7th/cmp-path")
-    use("hrsh7th/nvim-cmp")
-    use("onsails/lspkind.nvim")
-    use("L3MON4D3/LuaSnip")
-    use("saadparwaiz1/cmp_luasnip")
-    use("simrat39/symbols-outline.nvim")
-    use("rafamadriz/friendly-snippets")
-    use("glepnir/lspsaga.nvim")
-
-    -- Nvim Surround
     use({
-        "kylechui/nvim-surround",
+        'rose-pine/neovim',
+        as = 'rose-pine',
         config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
+            vim.cmd('colorscheme rose-pine')
         end
     })
 
-    -- Nvim autopairs
-    use {
-        "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
-    }
-
-    -- File explorer
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icons
-        },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
-    }
-
-    -- Treesitter
-    use("nvim-treesitter/nvim-treesitter", {
-        run = ":TSUpdate"
-    })
-
-    -- Debugging
-    use("mfussenegger/nvim-dap")
-    use("rcarriga/nvim-dap-ui")
-    use("theHamsta/nvim-dap-virtual-text")
-
-    -- LSP Lines
     use({
-        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        "folke/trouble.nvim",
         config = function()
-            require("lsp_lines").setup()
-        end,
+            require("trouble").setup {
+                icons = false,
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
     })
+
+
+    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    use("theprimeagen/harpoon")
+    use("theprimeagen/refactoring.nvim")
+    use("mbbill/undotree")
+    use("tpope/vim-fugitive")
+    use("nvim-treesitter/nvim-treesitter-context");
+    use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v1.x',
+        requires = {
+            -- LSP Support
+            { 'neovim/nvim-lspconfig' },
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
+
+            -- Autocompletion
+            { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-nvim-lua' },
+
+            -- Snippets
+            { 'L3MON4D3/LuaSnip' },
+            { 'rafamadriz/friendly-snippets' },
+        }
+    }
+
 end)
