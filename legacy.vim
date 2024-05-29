@@ -15,6 +15,9 @@ set undofile
 " automatically read on change
 set autoread
 
+" ;w is save
+noremap <silent> ;w :update<CR>
+
 " Colorscheme
 set termguicolors
 let g:gruvbox_contrast_dark='hard'
