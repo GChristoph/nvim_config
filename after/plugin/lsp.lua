@@ -3,20 +3,9 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-    'rust_analyzer'
+--   'tsserver',
+  'rust_analyzer',
 })
-
--- Fix Undefined global 'vim'
-lsp.configure('lua-language-server', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
-
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -34,16 +23,12 @@ lsp.setup_nvim_cmp({
   mapping = cmp_mappings
 })
 
-lsp.set_preferences({
-    suggest_lsp_servers = true,
-    sign_icons = {
-        error = 'E',
-        warn = 'W',
-        hint = 'H',
-        info = 'I'
-    }
+lsp.set_sign_icons({
+  error = '✘',
+  warn = '▲',
+  hint = '⚑',
+  info = 'I'
 })
-
 
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
@@ -60,12 +45,16 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-lsp.setup()
-
-vim.diagnostic.config({
-    virtual_text = true
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  -- Replace the language servers listed here 
+  -- with the ones you want to install
+  ensure_installed = {'rust_analyzer'},
+  handlers = {
+    -- function(server_name)
+    --   require('lspconfig')[server_name].setup({})
+    -- end,
+  },
 })
 
-
--- Format with lsp on save
---vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+lsp.setup()
