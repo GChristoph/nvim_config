@@ -45,6 +45,18 @@ require('mason-lspconfig').setup({
     -- function(server_name)
     --   require('lspconfig')[server_name].setup({})
     -- end,
+	function(rust_analyzer)
+		require('lspconfig')[rust_analyzer].setup({})
+	end,
+	function(clangd)
+		require('lspconfig')[clangd].setup({})
+	end,
+	function(lua_ls)
+		require('lspconfig')[lua_ls].setup({})
+	end,
+	function(pylsp)
+		require('lspconfig')[pylsp].setup({})
+	end,
   },
 })
 
