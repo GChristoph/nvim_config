@@ -59,4 +59,10 @@ return require('packer').startup(function(use)
         require("nvim-autopairs").setup {}
     end
   }
+  use {
+	'nvim-tree/nvim-tree.lua',
+	 requires = {
+	  'nvim-tree/nvim-web-devicons', -- optional
+    },
+  }
 end)

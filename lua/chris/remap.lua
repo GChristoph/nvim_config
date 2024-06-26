@@ -1,5 +1,8 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Lex)
+
+-- Open nvim-tree
+vim.keymap.set("n", "<leader>pv", vim.cmd.NvimTreeFocus)
+vim.keymap.set("n", "<leader>pt", vim.cmd.NvimTreeToggle)
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
