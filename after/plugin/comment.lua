@@ -4,11 +4,11 @@ require('Comment').setup({
 		extra = false,
 	},
 	toggler = {
-		line = 'cl',
+		line = 'l/',
 		block = nil,
 	},
 	opleader = {
-		line = 'cl',
+		line = 'l/',
 		block = nil,
 	},
 })
