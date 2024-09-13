@@ -47,7 +47,14 @@ require('mason-lspconfig').setup({
 		--   require('lspconfig')[server_name].setup({})
 		-- end,
 		function(rust_analyzer)
-			require('lspconfig')[rust_analyzer].setup({})
+			require('lspconfig')[rust_analyzer].setup({
+				checkOnSave = {
+					allFeatures = true,
+					overrideCommand = {
+						'cargo', 'clippy', '--workspace', '--message-format=json', '--all-targets', '--all-features'
+					}
+				}
+			})
 		end,
 		function(clangd)
 			require('lspconfig')[clangd].setup({})
