@@ -1,0 +1,5 @@
+vim.lsp.enable('emmylua_ls')
+vim.lsp.enable('ty')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('clangd')
+vim.lsp.enable('jdtls')

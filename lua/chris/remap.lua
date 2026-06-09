@@ -1,0 +1,32 @@
+vim.keymap.set("n", ";w", ":w<CR>")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+-- moves lines up and down with J, K
+vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+-- highlight word, <leader>s, replace every occurance in file with input
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>")
+
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlights text when yanking",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
+-- window navigation
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- file explorer
+vim.keymap.set('n', '<leader>e', ':Neotree<CR>', {desc = 'Open neotree'})
+
+-- switch to last used buffer
+vim.keymap.set("n", "<leader>n", "<C-^>")
+
