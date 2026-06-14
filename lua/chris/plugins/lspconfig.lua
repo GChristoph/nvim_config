@@ -20,21 +20,5 @@ return {
           vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
         end,
       })
-
-    -----------
-    -- SERVERS
-    require'lspconfig'.html.setup{}
-    require'lspconfig'.cssls.setup{}
-    require'lspconfig'.jsonls.setup{}
-    require'lspconfig'.tailwindcss.setup{}
-    require'lspconfig'.ts_ls.setup{}
-                require'lspconfig'.eslint.setup{
-      on_attach = function(client, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-          })
-      end
-    }
   end
 }
